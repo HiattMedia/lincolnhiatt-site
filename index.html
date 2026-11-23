@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lincoln Hiatt</title>
+<meta name="description" content="Lincoln Hiatt: showrunner and executive producer of Penn & Teller: Fool Us, virtual-studio producer of game, reality and variety shows, co-creator of Solitary, executive producer of Run the Ring and Living Art.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+/* VOICE  occasion: a working producer's calling card, confident and plain-spoken
+   IDEA   the TV studio itself: the chroma-key wall from his studio photos becomes the page's
+          hero and closing band; the "Now" list reads like a network rundown
+   PICTURE his blue-screen studio selfie filling the header, his name set on its chroma wall
+   COLOUR studio blue #1b34e2 (sampled from the photo's wall), white, black ink, tally-light red #e3261c for "on air" only
+   TYPE   Archivo throughout: expanded width for names and titles, normal width for text
+   LAYOUT laptop: full-bleed photo with name and intro over the blue wall on the left;
+          tablet and phone: photo with the name over its lower edge, intro below on the band */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#05081a);--ink:light-dark(#000000,#f2f4fb);--soft:light-dark(#4a4f5c,#b4bacb);--rule:light-dark(#dfe2ea,#22284a);--panel:light-dark(#f2f4fa,#0c1230);--blue:#1b34e2;--blue2:#2a44ee;--tally:#e3261c}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+:root{--navh:64px;--navink:light-dark(#555a66,#aab0c2);--navhalo:light-dark(rgb(255 255 255/.92),rgb(5 8 26/.92))}
+html{scroll-padding-top:calc(var(--navh) + 16px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 "Archivo",system-ui,sans-serif;font-stretch:100%;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--tally);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,80px);padding-inline:max(5vw,16px)}
+h1,h2,h3{font-stretch:125%;line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;margin-bottom:12px}
+h3{font-size:22px;font-weight:750}
+p{margin:0 0 14px;max-width:68ch;text-wrap:pretty}
+.lede{color:var(--soft);font-size:18px;margin-bottom:clamp(24px,3vw,40px)}
+.draft{background:var(--tally);color:#fff;font-size:14px;text-align:center;padding:6px 16px}
+
+/* studio band */
+.studio{background:var(--blue);color:#fff}
+header.studio{position:relative;overflow:hidden;margin-top:calc(-1 * var(--navh))}
+/* menu: stays on screen while scrolling, no bar behind it. Grey over light sections,
+   white over the blue photo and contact band (script toggles .on-dark) */
+nav{position:sticky;top:0;z-index:50;display:flex;gap:8px 28px;align-items:center;justify-content:flex-end;height:var(--navh);padding:0 max(5vw,16px);color:var(--navink);text-shadow:0 0 3px var(--navhalo),0 0 12px var(--navhalo);transition:color .2s}
+nav.on-dark{color:#fff;--navhalo:rgb(8 18 90/.3)}
+nav ul{display:flex;gap:4px 22px;list-style:none;margin:0;padding:0;white-space:nowrap}
+nav ul a{text-decoration:none;font-weight:600;opacity:.92}
+nav ul a:hover{text-decoration:underline}
+/* hero: name and intro over the studio photo */
+.hero{display:grid;grid-template-columns:minmax(0,1fr);padding-bottom:clamp(36px,5vw,72px)}
+.hero .copy{display:contents}
+.hero-pic{grid-row:1;grid-column:1;margin:0;position:relative}
+.hero-pic img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:62% 40%}
+.hero-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--blue) 0,rgb(27 52 226/.7) 20%,rgb(27 52 226/0) 46%),linear-gradient(180deg,rgb(8 16 70/.45) 0,rgb(8 16 70/0) 24%)}
+.hero h1{grid-row:1;grid-column:1;align-self:end;position:relative;z-index:1;padding:0 max(5vw,16px) 4px;font-size:clamp(48px,12.5vw,104px);font-weight:900;line-height:.95}
+.hero .roles,.hero p,.hero .btn,.hero .mail{margin-inline:max(5vw,16px)}
+.hero .roles{font-size:clamp(19px,2vw,24px);font-weight:650;margin-block:14px;font-stretch:112%;text-wrap:balance}
+.nw{white-space:nowrap}
+.hero p{font-size:18px;color:#e6ebff}
+.hero .btn{justify-self:start}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:999px;background:#fff;color:var(--blue);font-weight:750;text-decoration:none;margin-top:10px}
+.btn:hover{background:#e7ecff}
+.hero .mail{display:block;margin-top:10px;color:#e6ebff;font-size:15px}
+@media(min-width:1181px){
+  header.studio{display:flex;flex-direction:column;min-height:min(calc(100vw / 1.818),100svh);padding-top:var(--navh)}
+  .hero{flex:1;display:flex;align-items:center;padding:0 max(5vw,16px) clamp(28px,4vw,56px)}
+  .hero .copy{display:block;position:relative;z-index:2;max-width:clamp(300px,27vw,520px)}
+  .hero-pic{position:absolute;inset:0}
+  .hero-pic img{height:100%;aspect-ratio:auto;object-position:60% 45%}
+  .hero-pic::after{background:linear-gradient(90deg,rgb(24 46 214/.5) 0,rgb(24 46 214/.28) 24%,rgb(24 46 214/0) 40%),linear-gradient(180deg,rgb(8 16 70/.4) 0,rgb(8 16 70/0) 14%)}
+  .hero h1{padding:0;font-size:clamp(52px,5.4vw,104px)}
+  .hero .roles,.hero p,.hero .btn,.hero .mail{margin-inline:0}
+  .hero h1,.hero .roles,.hero p,.hero .mail{text-shadow:0 1px 14px rgb(8 18 90/.45)}
+}
+
+/* now: rundown */
+.rundown{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.rundown li{--ico:clamp(96px,9vw,128px);display:grid;grid-template-columns:minmax(0,.8fr) var(--ico) minmax(0,1.6fr) minmax(0,.6fr);gap:12px 28px;padding:26px 0;border-bottom:1px solid var(--rule);align-items:start}
+.when{font-stretch:112%;font-weight:700;font-size:17px;line-height:1.3}
+.when .on{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--tally);margin-right:8px;vertical-align:1px}
+.rundown h3{font-size:clamp(24px,2.6vw,32px);margin-bottom:6px}
+.rundown .role{font-weight:650;margin-bottom:6px}
+.rundown p{color:var(--soft);margin:0}
+.rundown .go{justify-self:end;font-weight:650}
+.rundown .ico{width:var(--ico);height:var(--ico);aspect-ratio:1;object-fit:cover;background:#000}
+
+/* virtual stage: the blue wall again, because the blue wall is the stage.
+   Lands with the menu over solid blue, like Contact */
+#virtual{scroll-margin-top:calc(-1 * (var(--navh) + 16px));padding-top:calc(var(--navh) + clamp(28px,4vw,56px))}
+#virtual .lede{color:#dfe6ff;margin-bottom:12px}
+.vs-intro{color:#eef1ff;margin-bottom:clamp(24px,3vw,40px)}
+.vs-shots{display:grid;grid-template-columns:minmax(0,16fr) minmax(0,12fr);gap:clamp(20px,3vw,40px);align-items:start}
+.vs-shots figure{margin:0}
+.vs-shots img{width:100%;height:auto}
+.vs-shots figcaption{padding-top:16px}
+.vs-shots h3{font-size:clamp(20px,2vw,24px);margin-bottom:6px}
+.vs-shots p{margin:0;color:#dfe6ff}
+.vs-shots .watches{margin-top:8px}
+/* not on the page for now (Lincoln, 23 Nov): the four points and the Spain/Italy/Germany line */
+.brings{list-style:none;margin:clamp(32px,4vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 28px}
+.brings li{border-top:2px solid #fff;padding-top:12px;font-weight:600;font-size:17px;line-height:1.4}
+.vs-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;margin-top:clamp(32px,4vw,48px)}
+.vs-cta p{margin:0;font-size:19px;font-weight:650;color:#fff;max-width:56ch}
+.vs-cta .btn{margin-top:0}
+
+/* selected work */
+.work{background:var(--panel)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 22px}
+.grid figure{margin:0}
+.grid .ph{overflow:hidden;background:#000;aspect-ratio:16/9}
+.grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.grid figure:hover img{transform:scale(1.04)}
+.grid figcaption{padding-top:10px;font-size:15px;line-height:1.45;color:var(--soft)}
+.grid figcaption b{display:block;color:var(--ink);font-size:17px;font-stretch:112%}
+.grid .lk{display:flex;flex-wrap:wrap;gap:2px 18px;margin-top:6px}
+.grid .lk a{color:var(--ink);font-weight:700}
+
+/* stories */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(24px,3vw,40px);border-bottom:1px solid var(--rule)}
+.story:last-child{border-bottom:0}
+.story.flip .pic{order:2}
+.story .pic img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.story .tag{font-weight:650;margin:8px 0 12px}
+.story.solo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.callout{background:var(--blue);color:#fff;padding:clamp(24px,3vw,36px);align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.callout b{font-stretch:125%;font-size:clamp(26px,3vw,38px);line-height:1.05;display:block;margin-bottom:10px}
+.callout span{color:#dfe6ff}
+.watch{font-weight:700}
+.watches{display:flex;flex-wrap:wrap;gap:8px 28px}
+
+/* press */
+.covers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.covers article img{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--rule)}
+.covers .src{font-weight:700;margin-top:12px;font-stretch:112%}
+.covers .hd{font-size:15px;color:var(--soft);margin:2px 0 8px}
+.covers q,.more q{font-size:15.5px;font-style:normal;display:block}
+.more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:40px;border-top:2px solid var(--ink)}
+.more > div{padding:18px 0;border-bottom:1px solid var(--rule)}
+.more .hd{margin-top:2px}
+.more q{margin-top:6px}
+.more .src{font-weight:700;font-stretch:112%}
+.more .hd{color:var(--soft);font-size:15px}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+.credits{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.credits li{padding:11px 0;border-bottom:1px solid var(--rule);font-size:15.5px}
+.credits b{font-stretch:112%}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 48px;align-items:end}
+.contact h2{color:#fff;font-size:clamp(40px,6vw,76px);font-weight:900}
+.contact .links{display:flex;flex-direction:column;gap:10px;font-size:18px;font-weight:650}
+.contact .links span{color:#dfe6ff;font-weight:400;font-size:15px;display:block}
+footer{border-top:1px solid #ffffff40;margin-top:clamp(28px,4vw,48px);padding-top:16px;font-size:14px;color:#dfe6ff}
+/* contact fills the screen, so the Contact link lands with the menu on solid blue */
+#contact{min-height:100svh;display:flex;flex-direction:column;padding-top:calc(var(--navh) + clamp(28px,4vw,56px));scroll-margin-top:calc(-1 * (var(--navh) + 16px))}
+#contact .wrap{flex:1;display:flex;flex-direction:column;width:100%}
+#contact footer{margin-top:auto}
+#contact .contact{margin-bottom:clamp(28px,4vw,48px)}
+
+@media(max-width:900px){
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.covers{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rundown li{grid-template-columns:minmax(0,.9fr) var(--ico) minmax(0,2fr)}
+.rundown .go{grid-column:3;justify-self:start}
+.brings{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+:root{--navh:52px}
+nav{padding-inline:12px}
+nav ul{flex:1;justify-content:space-between;gap:8px;font-size:14.5px;font-stretch:82%;overflow-x:auto;scrollbar-width:none}
+nav li{flex-shrink:0}
+}
+@media(max-width:400px){
+nav .nl{display:none}
+}
+@media(max-width:380px){
+nav ul{gap:6px;font-size:14px}
+}
+@media(max-width:340px){
+nav ul{gap:4px;font-size:13px;font-stretch:75%}
+}
+@media(max-width:600px){
+.hero-pic img{aspect-ratio:1;object-position:68% 40%}
+.hero h1{font-size:clamp(46px,13.5vw,72px)}
+.rundown li{--ico:84px;grid-template-columns:var(--ico) minmax(0,1fr);gap:8px 16px}
+.rundown .when{grid-column:1/-1}
+.rundown .go{grid-column:2}
+.grid{grid-template-columns:minmax(0,1fr)}
+.story,.story.solo,.about,.contact,.more,.vs-shots,.brings{grid-template-columns:minmax(0,1fr)}
+.story.flip .pic{order:0}
+}
+/* video pop-up: YouTube, Vimeo and Streamable links play on the page instead of leaving it */
+dialog.player{width:min(1100px,94vw);max-height:94vh;padding:0;border:0;background:#000;color:#fff;overflow:hidden}
+dialog.player::backdrop{background:rgb(5 8 26/.88)}
+.player .frame{aspect-ratio:16/9;max-height:calc(94vh - 52px);background:#000}
+.player iframe{width:100%;height:100%;border:0;display:block}
+.player .bar{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;padding:10px 16px;font-size:14px}
+.player .bar b{font-stretch:112%;margin-right:auto}
+.player .bar a{color:#cfd7ff}
+.player .x{font:inherit;font-weight:700;color:#000;background:#fff;border:0;border-radius:999px;min-height:36px;padding:0 16px;cursor:pointer}
+.player .x:hover{background:#e7ecff}
+html.has-player{overflow:hidden}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.grid img,nav{transition:none}}
+</style>
+</head>
+<body id="top">
+
+<nav aria-label="Main" class="on-dark">
+  <ul>
+    <li><a href="#top">Home</a></li>
+    <li><a href="#now">Now</a></li>
+    <li><a href="#virtual">Virtual<span class="nl"> stage</span></a></li>
+    <li><a href="#stories">Signature</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<header class="studio">
+  <div class="hero">
+    <figure class="hero-pic"><img src="img/studio.jpg" srcset="img/studio-900.jpg 900w, img/studio.jpg 1691w" sizes="100vw" alt="Lincoln taking a selfie on a blue-screen stage with Piff the Magic Dragon and two others" width="1691" height="930"></figure>
+    <div class="copy">
+      <h1>Lincoln Hiatt</h1>
+      <div class="roles">Format Creator, Showrunner, EP and <span class="nw">Virtual-Studio</span> Producer</div>
+      <p>Eleven seasons running Penn &amp; Teller: Fool Us on The CW, the latest on a real-time virtual stage. Pilots for Run the Ring and El Rosco: two hours of television in two languages, shot in two days.</p>
+      <a class="btn" href="mailto:hiattmedia@gmail.com">Email Lincoln</a>
+      <span class="mail">hiattmedia@gmail.com</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="band" id="now">
+  <div class="wrap">
+    <h2>Now</h2>
+    <p class="lede">What's in production, on air and available.</p>
+    <ul class="rundown">
+      <li>
+        <div class="when"><span class="on" aria-hidden="true"></span>Season 12 premieres January 22, 2027 on The CW</div>
+        <img class="ico" src="img/now-foolus.jpg" alt="" width="480" height="480">
+        <div><h3>Penn &amp; Teller: Fool Us</h3><div class="role">Showrunner and executive producer</div><p>Produced on a real-time virtual stage.</p></div>
+        <a class="go" href="#foolus">More below</a>
+      </li>
+      <li>
+        <div class="when">Pilots taped on a virtual stage in Los Angeles</div>
+        <img class="ico" src="img/now-rtr.jpg" alt="" width="480" height="480">
+        <div><h3>Run the Ring</h3><div class="role">Executive producer, through Approved Entertainment</div><p>The North American adaptation of El Rosco, the alphabet-wheel word game from Spain's Pasapalabra, in English and Spanish.</p></div>
+        <a class="go" href="#virtual">More below</a>
+      </li>
+      <li>
+        <div class="when">Streaming now</div>
+        <img class="ico" src="img/now-livingart.jpg" alt="" width="480" height="480">
+        <div><h3>Living Art</h3><div class="role">Executive producer, with Jared Hoffman and Andrew Golder</div><p>A documentary series following contemporary artists in their studios and cities across America.</p></div>
+        <a class="go" href="https://livingartshow.com/">livingartshow.com</a>
+      </li>
+      <li>
+        <div class="when">Available worldwide through ITV</div>
+        <img class="ico" src="img/now-solitary.jpg?v=2" alt="" width="480" height="480">
+        <div><h3>Solitary</h3><div class="role">Co-creator and executive producer</div></div>
+        <a class="go" href="#solitary">More below</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="studio band" id="virtual">
+  <div class="wrap">
+    <h2>Virtual Stage Production</h2>
+    <p class="lede">Game, reality and variety shows on a real-time virtual set, from the first format test to a full series.</p>
+    <p class="vs-intro">Lincoln is at the leading edge of producers recording multi-cam studio entertainment on a blue-screen stage in Unreal Engine environments. This approach will make your show look like a big studio production without the cost of a big studio set and crew.</p>
+    <div class="vs-shots">
+      <figure>
+        <img src="img/vs-foolus-split.jpg" alt="Penn &amp; Teller: Fool Us on the virtual stage. The left half of the frame shows the finished set with the show's Las Vegas sign; the right half shows the same stage as bare blue screen, with the judges' desk and audience in the foreground." loading="lazy" width="1400" height="788">
+        <figcaption><h3>Penn &amp; Teller: Fool Us, Season 12</h3><p>A full season of a network series, produced on a real-time virtual stage. Premieres January 22, 2027 on The CW.</p></figcaption>
+      </figure>
+      <figure>
+        <img src="img/vs-elrosco-quad.jpg" alt="El Rosco on the virtual stage: four live camera feeds, with close-ups of the host and two players and a wide shot of the set and the letter wheel" loading="lazy" width="1000" height="750">
+        <figcaption><h3>Run the Ring and El Rosco</h3><p>Pilots in English and Spanish: two hours of television, shot in two days.</p>
+          <div class="watches"><a class="watch" href="https://streamable.com/iy5u3k">Watch the English teaser</a><a class="watch" href="https://streamable.com/zzgynb" lang="es">Ver el teaser en español</a></div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band work" id="stories">
+  <div class="wrap">
+    <h2>Signature work</h2>
+    <p class="lede">The shows and films Lincoln is best known for.</p>
+    <div class="story" id="foolus">
+      <div class="pic"><img src="img/w05.jpg" alt="Penn & Teller: Fool Us title art" loading="lazy"></div>
+      <div>
+        <h3>Penn &amp; Teller: Fool Us</h3>
+        <div class="tag">Showrunner and executive producer, Seasons 2–12, The CW</div>
+        <p>The most popular magic series on television, and one of The CW's longest-running hits. As showrunner, Lincoln is first on and last off: producing the magic and the host, writing scripts, casting worldwide, running the documentary teams and supervising graphics.</p>
+        <div class="watches"><a class="watch" href="https://vimeo.com/1106236201/bb380cd648">Watch the main title sequence</a><a class="watch" href="https://www.cwtv.com/shows/penn-teller-fool-us/">The CW show page</a></div>
+      </div>
+    </div>
+    <div class="story flip" id="solitary">
+      <div class="pic"><img src="img/solitary-story.jpg" alt="A Solitary contestant in chains, with welding goggles pushed up on her head" loading="lazy" style="object-position:32% 40%"></div>
+      <div>
+        <h3>Solitary</h3>
+        <div class="tag">Co-creator and executive producer. Now available worldwide through ITV.</div>
+        <p>A reality competition with no alliances and no backstabbing, because nobody gets to meet anybody. Each player lives alone in a pod, guided (and sometimes misled) by Val, the show's computer host, and the last to quit wins. Fans binge-watched it for four seasons, and versions followed in Germany and Brazil.</p>
+        <a class="watch" href="https://streamable.com/hn63jj">Watch the Solitary.ai teaser</a>
+      </div>
+    </div>
+    <div class="story" id="unan1mous">
+      <div class="pic"><img src="img/w04.jpg" alt="The UNAN1MOUS cast lined up in the bunker" loading="lazy"></div>
+      <div>
+        <h3>UNAN1MOUS (2006)</h3>
+        <div class="tag">Creator and executive producer, Fox</div>
+        <p>Nine strangers locked in a bunker share one prize: $1.5 million that shrinks for as long as they disagree. To win it they have to vote unanimously on who takes it home, and players who get voted out stay in the bunker and keep voting. It premiered on Fox right after American Idol to 15.8 million viewers, holding on to more of Idol's audience than any premiere in nearly two years.</p>
+      </div>
+    </div>
+    <div class="story flip">
+      <div class="pic"><img src="img/w01.jpg" alt="Godzilla (1998)" loading="lazy"></div>
+      <div>
+        <h3>Godzilla (1998)</h3>
+        <div class="tag">Video unit producer</div>
+        <p>Lincoln's team produced the main title sequence and every piece of video, news and graphics playback in the film. He also turns up as a TV news reporter outside the Lincoln Tunnel, and he shot the film's behind-the-scenes special for Showtime.</p>
+        <div class="watches"><a class="watch" href="https://www.youtube.com/watch?v=RUHHxecmLUI">Watch the main title sequence</a><a class="watch" href="https://vimeo.com/1095780557/bb55c24cf4">Watch the Showtime special</a></div>
+      </div>
+    </div>
+    <div class="story">
+      <div class="pic"><img src="img/w07.jpg" alt="Independence Day (1996)" loading="lazy"></div>
+      <div>
+        <h3>Independence Day (1996)</h3>
+        <div class="tag">Video unit producer</div>
+        <p>Ever wonder why a Mac saved the world? Lincoln's team built the film's graphics and animation, and Apple was their platform of choice. They also produced the video and display graphics and shot B-roll from helicopters. Lincoln gets another cameo as a TV news reporter, back when fake news was just for entertainment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="work">
+  <div class="wrap">
+    <h2>More work</h2>
+    <p class="lede">Formats created, launched and adapted around the world, plus feature-film video work.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="band work" id="press">
+  <div class="wrap">
+    <h2>Press</h2>
+    <p class="lede">Features and interviews on Fool Us, Solitary and UNAN1MOUS.</p>
+    <div class="covers">
+      <article><img src="img/genii-2025.jpg" alt="Genii magazine, July 2025 cover" loading="lazy"><div class="src">Genii, July 2025</div><div class="hd">Fool Us Made This Magic Moment</div><q>I think our episodes are conversations with the audience about magic.</q></article>
+      <article><img src="img/genii-2021.jpg" alt="Genii magazine, January 2021 cover" loading="lazy"><div class="src">Genii, January 2021</div><div class="hd">Casting Call: Fool Us Season 8</div><q>We definitely made lemonade this year.</q></article>
+      <article><img src="img/mania.jpg" alt="Mania feature on Solitary" loading="lazy"><div class="src">Mania, March 2009</div><div class="hd">Solitary interview with Lincoln Hiatt</div><q>co-creator and executive producer of this psychotronic, human experiment</q></article>
+      <article><img src="img/unan1mous-keyart.jpg" alt="UNAN1MOUS key art: the nine contestants under the show's title" loading="lazy"><div class="src">New York Post, March 22, 2006</div><div class="hd">Bunker Boogie: UNAN1MOUS review, ★★★½</div><q>exactly what I don't need: another wildly addictive show</q></article>
+    </div>
+    <div class="more">
+      <div><div class="src">The New York Times, November 2023</div><div class="hd">Penn &amp; Teller Don't Mind Being Fooled</div><q>TV's premier showcase for magicians</q></div>
+      <div><div class="src"><a href="https://www.nytimes.com/2019/11/26/magazine/letter-of-recommendation-penn-teller-fool-us.html">The New York Times Magazine, November 2019</a></div><div class="hd">Letter of Recommendation: Penn &amp; Teller: Fool Us</div></div>
+      <div><div class="src"><a href="https://www.youtube.com/watch?v=8siftE5U1K8">Magical Women with Connie Boyd</a></div><div class="hd">Video interview: Fool Us executive producers Andrew Golder and Lincoln Hiatt</div></div>
+      <div><div class="src"><a href="https://www.motherjones.com/politics/2008/03/voluntary-confinement/">Mother Jones, March/April 2008</a></div><div class="hd">Voluntary Confinement: on Solitary</div><q>If we could, we'd open Solitary camps as therapy retreats.</q></div>
+      <div><div class="src">New York Post, March 2006</div><div class="hd">The Real Deal: Lincoln Hiatt on UNAN1MOUS</div><q>I think the tide has turned against feel-good reality.</q></div>
+      <div><div class="src">MSNBC.com, April 2006</div><div class="hd">UNAN1MOUS review</div><q>brilliantly simple</q></div>
+      <div><div class="src">Broadcast, March 2006</div><div class="hd">Format focus: UNAN1MOUS, ahead of its international launch at MIPTV</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="wrap about">
+    <div>
+      <h2>About</h2>
+      <p>Lincoln Hiatt makes unscripted television and builds the formats behind it. He has been showrunner and executive producer of Penn &amp; Teller: Fool Us since Season 2, and he executive produced the pilots for Run the Ring, the North American version of El Rosco, through his company Approved Entertainment. Fool Us Season 12 and both pilots were produced on a real-time virtual stage.</p>
+      <p>He created UNAN1MOUS for Fox, co-created Solitary for Fox Reality Channel, and co-wrote the Survivor bible during the show's original development. For Red Arrow Entertainment and others he has launched and adapted formats in China, Korea, Bulgaria, Sweden, Egypt, Norway, United Kingdom, and more.</p>
+      <p>Before reality television he ran video units on feature films including Independence Day, Godzilla and Mad City. He is an honors graduate of the USC Marshall School of Business and earned a graduate degree in film production in Melbourne, Australia.</p>
+    </div>
+    <ul class="credits" aria-label="More credits">
+      <li><b>Red Arrow Entertainment</b>, executive producer, international formats, 2013–2018</li>
+      <li><b>A+E Networks</b>, format consultant, 2016–2018</li>
+      <li><b>The Contender</b>, producer, 2005</li>
+      <li><b>Don't Forget Your Toothbrush</b>, supervising producer, 2000</li>
+      <li><b>Survivor</b>, co-wrote the original format bible, Planet 24</li>
+      <li><b>Let's Make a Deal</b>, writer, 1990–91</li>
+      <li><b>Fun House, Rescue 911, Candid Camera</b>, segment producer</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<section class="studio band" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Let's make something.</h2>
+      <div class="links">
+        <a href="mailto:hiattmedia@gmail.com">Email<span>hiattmedia@gmail.com</span></a>
+        <a href="https://www.linkedin.com/in/lincoln-hiatt-a6335562/">LinkedIn</a>
+        <a href="https://www.imdb.com/name/nm0382450/">IMDb</a>
+      </div>
+    </div>
+    <footer>© 2026 Lincoln Hiatt</footer>
+  </div>
+</section>
+
+<dialog class="player" aria-label="Video player">
+  <div class="frame"><iframe title="Video" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  <div class="bar"><b></b><a class="out" target="_blank" rel="noopener">Video not playing? Open it in a new tab</a><button class="x" type="button">Close</button></div>
+</dialog>
+<script>
+{
+const nav = document.querySelector("nav");
+const darks = [...document.querySelectorAll(".studio")];
+let queued = false;
+const setNav = () => {
+  queued = false;
+  const n = nav.getBoundingClientRect(), y = n.top + n.height / 2;
+  nav.classList.toggle("on-dark", darks.some(d => { const r = d.getBoundingClientRect(); return r.top <= y && r.bottom >= y; }));
+};
+addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(setNav); } }, {passive:true});
+addEventListener("resize", setNav);
+setNav();
+const work = [
+  ["w-fearfactor","Fear Factor","Consulting producer and challenge designer, 2025."],
+  ["w-ttah","Penn & Teller: Try This at Home","Executive producer. Two specials for The CW, filmed remotely in Penn and Teller's homes during lockdown, 2020."],
+  ["w-sod2-room","State of Decay 2 Promo","Director, Xbox State of Decay escape room. Starring SMOSH."],
+  ["w09-china","Body and Brain","Consulting executive producer. China."],
+  ["w10","The Taste: China","Flying producer. Reality cooking series, BTV, China."],
+  ["w-taste-me","The Taste: Middle East","Consulting producer. Pan-Arab version, shot in Egypt for Al-Nahar."],
+  ["w12","Good Luck! Bad Luck!","Consulting executive producer. Worldwide series premiere, TV7 Bulgaria."],
+  ["w14","True Love Boot Camp","Story and editorial consultant. Documentary series, Beijing."],
+  ["w15","Man versus Child: Chef Edition","Flying producer. Cooking competition series, Korea."],
+  ["w17","The Lost Supper","Format creator. Three episodes aired on STV, Scotland."],
+  ["w08","Mad City","Video unit producer."],
+  ["w11","The Treasure Hunter's Apprentice","Format creator, director and executive producer. Pilot hour for MSNBC."],
+  ["w03","Beat the Average","Writer and producer. Game show presentation, Tel Aviv."],
+  ["w13","Home Sweet Hotel","Format creator. Sweden."],
+  ["w06","Deadlock","Director, producer and format creator. Pilot presentation for Red Arrow International."]
+];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+document.getElementById("grid").innerHTML = work.map(([f,t,c,links=[]]) =>
+  `<figure><div class="ph"><img src="img/${f}.jpg" alt="${esc(t)}" loading="lazy"></div><figcaption><b>${esc(t)}</b>${esc(c)}${links.length ? `<span class="lk">${links.map(([l,u]) => `<a href="${u}">${esc(l)}</a>`).join("")}</span>` : ""}</figcaption></figure>`
+).join("");
+
+// Videos open in a pop-up player on the page. Other outside links open in a new tab,
+// so the site stays open behind them.
+const embedUrl = href => {
+  let u; try { u = new URL(href); } catch { return null; }
+  const host = u.hostname.replace(/^www\./, "");
+  const parts = u.pathname.split("/").filter(Boolean);
+  if (host === "youtube.com" && u.searchParams.get("v")) return { src: `https://www.youtube-nocookie.com/embed/${u.searchParams.get("v")}?autoplay=1&rel=0`, site: "YouTube" };
+  if (host === "youtu.be" && parts[0]) return { src: `https://www.youtube-nocookie.com/embed/${parts[0]}?autoplay=1&rel=0`, site: "YouTube" };
+  if (host === "vimeo.com" && /^\d+$/.test(parts[0] || "")) return { src: `https://player.vimeo.com/video/${parts[0]}?autoplay=1${parts[1] ? "&h=" + parts[1] : ""}`, site: "Vimeo" };
+  if (host === "streamable.com" && parts[0]) return { src: `https://streamable.com/e/${parts[0]}?autoplay=1`, site: "Streamable" };
+  return null;
+};
+document.querySelectorAll('a[href^="http"]').forEach(a => { a.target = "_blank"; a.rel = "noopener"; });
+
+const player = document.querySelector("dialog.player");
+const frame = player.querySelector("iframe");
+const openPlayer = (a, v) => {
+  const title = a.closest("figure, .story, li, .more > div")?.querySelector("h3, b, .src")?.textContent.trim() || a.textContent.trim();
+  player.querySelector(".bar b").textContent = title;
+  frame.title = title;
+  const out = player.querySelector(".out");
+  out.href = a.href;
+  out.textContent = `Video not playing? Watch it on ${v.site}`;
+  frame.src = v.src;
+  document.documentElement.classList.add("has-player");
+  player.showModal();
+  player.querySelector(".x").focus();
+};
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[href]");
+  if (!a || a.closest("dialog") || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+  const v = embedUrl(a.href);
+  // The private preview runs the page inside another page and blocks embedded players,
+  // so there the link just opens in a new tab. On the live site it plays in the pop-up.
+  if (!v || typeof player.showModal !== "function" || window.self !== window.top) return;
+  e.preventDefault();
+  openPlayer(a, v);
+});
+player.querySelector(".x").addEventListener("click", () => player.close());
+player.addEventListener("click", e => { if (e.target === player) player.close(); });
+player.addEventListener("close", () => { frame.src = "about:blank"; document.documentElement.classList.remove("has-player"); });
+}
+</script>
+</body>
+</html>
