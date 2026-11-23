@@ -112,6 +112,7 @@ nav ul a:hover{text-decoration:underline}
 .grid figure:hover img{transform:scale(1.04)}
 .grid figcaption{padding-top:10px;font-size:15px;line-height:1.45;color:var(--soft)}
 .grid figcaption b{display:block;color:var(--ink);font-size:17px;font-stretch:112%}
+.grid figcaption .type{display:block;color:light-dark(var(--blue),#9aabff);font-weight:650;font-size:14.5px;margin:1px 0 3px}
 .grid .lk{display:flex;flex-wrap:wrap;gap:2px 18px;margin-top:6px}
 .grid .lk a{color:var(--ink);font-weight:700}
 
@@ -418,25 +419,26 @@ addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimatio
 addEventListener("resize", setNav);
 setNav();
 const work = [
-  ["w-fearfactor","Fear Factor","Consulting producer and challenge designer, 2025."],
-  ["w-ttah","Penn & Teller: Try This at Home","Executive producer. Two specials for The CW, filmed remotely in Penn and Teller's homes during lockdown, 2020."],
-  ["w-sod2-room","State of Decay 2 Promo","Director, Xbox State of Decay escape room. Starring SMOSH."],
-  ["w09-china","Body and Brain","Consulting executive producer. China."],
-  ["w10","The Taste: China","Flying producer. Reality cooking series, BTV, China."],
-  ["w-taste-me","The Taste: Middle East","Consulting producer. Pan-Arab version, shot in Egypt for Al-Nahar."],
-  ["w12","Good Luck! Bad Luck!","Consulting executive producer. Worldwide series premiere, TV7 Bulgaria."],
-  ["w14","True Love Boot Camp","Story and editorial consultant. Documentary series, Beijing."],
-  ["w15","Man versus Child: Chef Edition","Flying producer. Cooking competition series, Korea."],
-  ["w17","The Lost Supper","Format creator. Three episodes aired on STV, Scotland."],
-  ["w08","Mad City","Video unit producer."],
-  ["w11","The Treasure Hunter's Apprentice","Format creator, director and executive producer. Pilot hour for MSNBC."],
-  ["w03","Beat the Average","Writer and producer. Game show presentation, Tel Aviv."],
-  ["w13","Home Sweet Hotel","Format creator. Sweden."],
-  ["w06","Deadlock","Director, producer and format creator. Pilot presentation for Red Arrow International."]
+  // [image, title, type of show, role and detail]
+  ["w-fearfactor","Fear Factor","Competition reality show","Consulting producer and challenge designer, 2025."],
+  ["w-ttah","Penn & Teller: Try This at Home","Magic specials","Executive producer. Two specials for The CW, filmed remotely in Penn and Teller's homes during lockdown, 2020."],
+  ["w-sod2-room","State of Decay 2 Promo","Branded entertainment","Director, Xbox State of Decay escape room. Starring SMOSH."],
+  ["w09-china","Body and Brain","Game show (German format)","Consulting executive producer. China."],
+  ["w10","The Taste: China","Cooking competition (ABC format)","Flying producer. BTV, China."],
+  ["w-taste-me","The Taste: Middle East","Cooking competition (ABC format)","Consulting producer. Pan-Arab version, shot in Egypt for Al-Nahar."],
+  ["w12","Good Luck! Bad Luck!","Game show","Consulting executive producer. Worldwide series premiere, TV7 Bulgaria."],
+  ["w14","True Love Boot Camp","Documentary series","Story and editorial consultant. Beijing."],
+  ["w15","Man versus Child: Chef Edition","Cooking competition","Flying producer. Korea."],
+  ["w17","The Lost Supper","Food docuseries","Format creator. Three episodes aired on STV, Scotland."],
+  ["w08","Mad City","Feature film","Video unit producer."],
+  ["w11","The Treasure Hunter's Apprentice","Documentary series","Format creator, director and executive producer. Pilot hour for MSNBC."],
+  ["w03","Beat the Average","Game show","Writer and producer. Presentation, Tel Aviv."],
+  ["w13","Home Sweet Hotel","Hosting competition","Format creator. Sweden."],
+  ["w06","Deadlock","","Director, producer and format creator. Pilot presentation for Red Arrow International."]
 ];
 const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-document.getElementById("grid").innerHTML = work.map(([f,t,c,links=[]]) =>
-  `<figure><div class="ph"><img src="img/${f}.jpg" alt="${esc(t)}" loading="lazy"></div><figcaption><b>${esc(t)}</b>${esc(c)}${links.length ? `<span class="lk">${links.map(([l,u]) => `<a href="${u}">${esc(l)}</a>`).join("")}</span>` : ""}</figcaption></figure>`
+document.getElementById("grid").innerHTML = work.map(([f,t,g,c,links=[]]) =>
+  `<figure><div class="ph"><img src="img/${f}.jpg" alt="${esc(t)}" loading="lazy"></div><figcaption><b>${esc(t)}</b>${g ? `<span class="type">${esc(g)}</span>` : ""}${esc(c)}${links.length ? `<span class="lk">${links.map(([l,u]) => `<a href="${u}">${esc(l)}</a>`).join("")}</span>` : ""}</figcaption></figure>`
 ).join("");
 
 // Videos open in a pop-up player on the page. Other outside links open in a new tab,
